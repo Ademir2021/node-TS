@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case</title>
+<style>
+* {
+    margin: 0%;
+    padding: 0%;
+    background-color: rgba(0,0,0,0.4)
+}
+.mes {
+    width: 600px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    background-color: #e2e0de;
+    padding: 20px 20px 20px 20px;
+    border: 3px solid blue;
+    color: blue;
+    border-radius: 15px;
+}
+.meses {
+    padding: 20px 20px 20px 20px;
+    text-align: center;
+    font-size:xx-large;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(247, 240, 255);
+}
+input {
+    padding: 10px;
+    color: blue;
+}
+input:over{
+    color: blueviolet;
+}
+
+button {
+    font-display: 12px;
+    color: blue;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+button:hover{
+    color: blueviolet;
+}
+@media screen and (min-width: 200px) {
+  .body {
+    margin: 1em 1em;
+  }
+}
+</style>
+</head>
+<body>
+<div class="meses">Digite um numero inteiro referente ao mês.</div>
+<div class="mes">
+Digite um mês de 1 até 12:<input id="numero" type="number"> <br />
+<button onclick="exibir()">Exibir mês</button>
+</div>
+
+<script type="text/javascript">
+ function exibir(){
+    var mes = parseInt(document.getElementById ("numero").value);
+  
+  switch(mes){
+   case 1:  console.log("Janeiro"); break;
+   case 2:  console.log("Fevereiro"); break;
+   case 3:  console.log("Março"); break;
+   case 4:  alert("Abril"); break;
+   case 5:  alert("Maio"); break;
+   case 6:  alert("Junho"); break;
+   case 7:  alert("Julho"); break;
+   case 8:  alert("Agosto"); break;
+   case 9:  alert("Setembro"); break;
+   case 10: alert("Outubro"); break;
+   case 11: alert("Novembro"); break;
+   case 12: alert("Dezembro"); break;
+   default: alert("Voce não digitou o mês válido");
+  }
+ }
+</script>
+
+<!--
+<script>
+    let num_one = 5; //Fist number
+    let num_two = 9; //Second number
+    console.log("Type: 1 for sum | 2 for substract | 3 share ");
+    console.alert()
+    </script> -->
+</body>
+</html>

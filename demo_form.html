@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="?"/>
+    <title>Document</title>
+</head>
+<body>
+    <form name="curso1" id="curso1" action="#" method="post">
+        <label>Nome</label>
+        <input type="text" name="fNome" id="teste" value="Primeiro -1">
+        <label>Senha</label>
+        <input type="number" name="fSenha" value="123">
+        <input type="submit" name="btEnviar" onclick="enviar()" value="Enviar">
+    </form>
+
+    <hr>
+    <script>
+       var name = (document.getElementById("curso1").elements[0].value)
+       var password = (document.getElementById("curso1").elements[1].value)
+    
+       document.write(name,`  `, password)
+
+
+        //var fm=document.forms["curso1"].elements[0].value;
+        //var fm=document.forms.item(0).id;
+        //var fm=document.forms.namedItem("curso2").innerHTML
+        //var fm=document.forms[0].id
+       // document.write(fm)
+    </script>
+</body>
+</html>
