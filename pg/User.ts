@@ -4,9 +4,9 @@ import { client } from "./Pg";
 export class User extends Pg{
 
     private _password:string;
-    constructor(table:string, id:number, name:string){
+    constructor(table:string, id:number, name:string, password:string){
         super(table, id, name)
-        //this._password = ""
+        this._password = password
     };
 
     public get password():string{
