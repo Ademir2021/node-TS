@@ -1,10 +1,21 @@
-import { Pg } from "./pg";
-import { client } from "./pg";
+import { Pg } from "./Pg";
+import { client } from "./Pg";
 
-export class Users extends Pg{
-    constructor(id:number, name:string){
-        super(id, name)
+export class User extends Pg{
+
+    private _password:string;
+    constructor(table:string, id:number, name:string){
+        super(table, id, name)
+        //this._password = ""
     };
+
+    public get password():string{
+        return this._password
+    };
+
+    public set password(password:string){
+        this._password = password
+    }
 
     public insert() {
         //
