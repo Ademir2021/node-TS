@@ -1,6 +1,5 @@
 import { Pg } from "./Pg";
 import { client } from "./Pg";
-import { users } from "./main"
 
 export class User extends Pg{
     private _username:string;
@@ -30,7 +29,7 @@ export class User extends Pg{
         }
     };
 
-    public async insertAll() {
+    public async insertAll(users:any) {
         try{
             console.log("iniciando a conexão !!")
             await client.connect()

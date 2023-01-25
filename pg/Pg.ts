@@ -11,7 +11,7 @@ export const client = new Client(user_db);
     };
     
     public abstract insert(): void;
-    public abstract insertAll(): void;
+    public abstract insertAll(users:any):any
     public abstract update(): void;
     public abstract findAll(): void;
     public abstract find(): void;
