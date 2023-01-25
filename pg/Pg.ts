@@ -4,14 +4,15 @@ export const client = new Client(user_db);
 
  export abstract class Pg{
     protected _id:number;
-    protected _name:string;
-    constructor(id:number, name:string){
+    protected _name:string | number;
+    constructor(id:number, name:string | number){
         this._id = id;
         this._name = name;
     };
     
     public abstract insert(): void;
     public abstract insertAll(users:any):any
+    public abstract insertItens():void
     public abstract update(): void;
     public abstract findAll(): void;
     public abstract find(): void;

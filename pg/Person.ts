@@ -1,17 +1,15 @@
 import { Pg } from './Pg'
 import { client } from "./Pg";
 
-export class Product extends Pg{
-    private _price:number;
-    private _price_min:number;
-    private _brand:number;
-    private _sector:number;
-    constructor( id:number, name:string, price:number, price_min:number, brand:number, sector:number){
-        super( id, name)
-        this._price = price;
-        this._price_min = price_min;
-        this._brand = brand;
-        this._sector = sector;  
+export class Person extends Pg{
+    private _cpf:string;
+    private _address:string;
+    private _name_filial:number;
+    constructor(id:number, name:string, cpf:string, address:string, name_filial:number){
+        super(id, name)
+        this._cpf = cpf;
+        this._address = address;
+        this._name_filial = name_filial
     };
 
     public async insert() {
@@ -19,8 +17,8 @@ export class Product extends Pg{
         console.log("iniciando a conexão !")
         await client.connect()
         console.log("Conexão bem sucedida !")
-        await client.query('insert into products("descric_product", "val_product", "val_min_product", "fk_brand", "fk_sector") values ('+"'"+this._name+"', '"+this._price+"', '"+this._price_min+"', '"+this._brand+"', '"+this._sector+"');")
-        console.log("Produto inserido na tabela !")
+        await client.query('insert into persons("name_pers", "cpf_pers", "address_pers", "fk_name_filial", "fk_sector") values ('+"'"+this._name+"', '"+this._cpf+"', '"+this._address+"', '"+this._name_filial+"');")
+        console.log("Pessoa inserida na tabela !")
         const resultado = await client.query("select * from products")
         console.table(resultado.rows) 
     }
