@@ -1,8 +1,9 @@
 import { Pg } from "./Pg"
 import { User } from './User'
+import { Product } from './Product';
 export let users:IUser[] = []
 
-interface IUser{
+export interface IUser{
     id:number;
     name:string;
     username:string;
@@ -17,14 +18,23 @@ users = [
     {id:5, name:'Francieli Dalsente de Almeida', username:'francieli@provider.com', password:'123abc'}
     ]
 
-// let x = {id:0, name:'Ana Claudia de Amorin', username:'ana@provider.com', password:'123abc'}
-// users.push(x)    
+ let x = {id:6, name:'Ana Claudia de Amorin', username:'ana@provider.com', password:'123abc'}
+ users.push(x)    
 
 for (let i=0; users.length >i; i++){
 const user_all:Pg = new User (users[i].id, users[i].name, users[i].username, users[i].password);
-//console.log(user_all)
+console.log(user_all);
 };
 
 const user:Pg = new User (users[0].id, users[0].name, users[0].username, users[0].password)
-//console.log(user)
-user.findAll()
+
+// user.insert();
+// user.insertAll();
+// user.update();
+// user.findAll();
+// user.find();
+// user.delete();
+
+const product:Pg = new Product(1, "Mouse Serial", 19.90, 9)
+
+console.log(product)

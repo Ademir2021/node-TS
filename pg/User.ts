@@ -13,28 +13,28 @@ export class User extends Pg{
 
     public async insert() {
         try{
-            console.log("iniciando a conexão.!")
+            console.log("iniciando a conexão !")
             await client.connect()
-            console.log("Conexão bem sucedida!")
+            console.log("Conexão bem sucedida !")
             await client.query('insert into users("name", "username", "password") values ('+"'"+this._name+"', '"+this._username+"', '"+this._password+"');")
             console.log("User inserido na tabela!")
             const resultado = await client.query("select * from users")
             console.table(resultado.rows)
         }
         catch(ex){
-            console.log("Ocorreu um erro no setUser. Erro: "+ ex)
+            console.log("Ocorreu um erro !! Erro: "+ ex)
         }
         finally{
             await client.end()
-            console.log("Cliente desconectado.")
+            console.log("Cliente desconectado !!")
         }
     };
 
     public async insertAll() {
         try{
-            console.log("iniciando a conexão.!")
+            console.log("iniciando a conexão !!")
             await client.connect()
-            console.log("Conexão bem sucedida!")
+            console.log("Conexão bem sucedida !")
             for (let i = 0; users.length > i; i++){
             await client.query('insert into users("name", "username", "password") values ('+"'"+users[i].name+"', '"+users[i].username+"', '"+users[i].password+"');")
             }
@@ -49,74 +49,74 @@ export class User extends Pg{
         }
         finally{
             await client.end()
-            console.log("Cliente desconectado.")
+            console.log("Cliente desconectado !")
         }
     }
     
     public async update() {
         try{
-            console.log("Iniciando a conexão!")
+            console.log("Iniciando a conexão !")
             await client.connect()
-            console.log('Bem sucedida!')
+            console.log('Bem sucedida !')
            await client.query("UPDATE users SET name = '"+this._name+"', username = '"+this._username+"', password = '"+this._password+"' WHERE id = '"+this._id+"';")
             console.log("user alterado da tabela")
             const resultado = await client.query("SELECT * FROM users")
             console.table(resultado.rows)
          }
             catch(ex){
-            console.log("Ocorreu erro em users")
+            console.log("Ocorreu erro !!")
             }
             finally{
                 await client.end()
-                console.log("Cliente desconectado")
+                console.log("Cliente desconectado !!")
             }
     };
 
     public async findAll(){
         try{
-            console.log("Iniciando a conexão!")
+            console.log("Iniciando a conexão !")
             await client.connect()
-            console.log('Bem sucedida!')
+            console.log('Bem sucedida! ')
             const resultado = await client.query("SELECT * from users ")
             let user = resultado.rows
             console.table(user) 
          }
             catch(ex){
-            console.log("Ocorreu erro em users")
+            console.log("Ocorreu erro !")
             }
             finally{
                 await client.end()
-                console.log("Cliente desconectado")
+                console.log("Cliente desconectado !")
             }
         };
 
         public async find(){
-            console.log("iniciando uma conexão");
+            console.log("iniciando uma conexão !");
             client.connect();
-            console.log("Conexão bem sucedida!");
+            console.log("Conexão bem sucedida !");
             const resultado = await client.query("SELECT *FROM users WHERE id =  '"+this._id+"';")
             let user = resultado.rows
             console.log(user) 
             client.end();
-            console.log("Cliente desconectado.");
+            console.log("Cliente desconectado !");
         };
 
     public async delete(){
         try{
-            console.log("Iniciando a conexão!")
+            console.log("Iniciando a conexão !")
             await client.connect()
             console.log('Bem sucedida!')
            await client.query("DELETE FROM users WHERE name = '"+this._name+"';")
             console.log("user removido da tabela")
-            const resultado = await client.query("SELECT * FROM users")
+            const resultado = await client.query("SELECT * FROM users !")
             console.table(resultado.rows)
          }
             catch(ex){
-            console.log("Ocorreu erro em user")
+            console.log("Ocorreu erro em user !")
             }
             finally{
                 await client.end()
-                console.log("Cliente desconectado")
+                console.log("Cliente desconectado !!")
             }
         };
     }
