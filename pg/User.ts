@@ -12,21 +12,21 @@ export class User extends Pg{
 
     public async insert() {
         try{
-            console.log("iniciando a conexão !")
-            await client.connect()
-            console.log("Conexão bem sucedida !")
-            await client.query('insert into users("name", "username", "password") values ('+"'"+this._name+"', '"+this._username+"', '"+this._password+"');")
-            console.log("User inserido na tabela!")
-            const resultado = await client.query("select * from users")
-            console.table(resultado.rows)
-        }
-        catch(ex){
-            console.log("Ocorreu um erro !! Erro: "+ ex)
-        }
-        finally{
-            await client.end()
-            console.log("Cliente desconectado !!")
-        }
+        console.log("iniciando a conexão !")
+        await client.connect()
+        console.log("Conexão bem sucedida !")
+        await client.query('insert into users("name", "username", "password") values ('+"'"+this._name+"', '"+this._username+"', '"+this._password+"');")
+        console.log("User inserido na tabela!")
+        const resultado = await client.query("select * from users")
+        console.table(resultado.rows)
+    }
+    catch(ex){
+        console.log("Ocorreu um erro no setUsers. Erro: "+ ex)
+    }
+    finally{
+        await client.end()
+        console.log("Cliente desconectado !")
+    }      
     };
 
     public async insertAll(users:any) {
@@ -50,7 +50,7 @@ export class User extends Pg{
             await client.end()
             console.log("Cliente desconectado !")
         }
-    }
+    };
     
     public async update() {
         try{

@@ -21,12 +21,9 @@ users = [
 //  let x = {id:6, name:'Ana Claudia de Amorin', username:'ana@provider.com', password:'123abc'}
 //  users.push(x)    
 
+const user:Pg = new User(users[0].id, users[0].name, users[0].username, users[0].password)
 
-const user:Pg = new User (users[0].id, users[0].name, users[0].username, users[0].password)
 
-user.insert();
-user.insertAll(users);
-// user.update();
- //user.findAll();
-// user.find();
-// user.delete();
+const product:Pg = new Product (1, "Mouse serial", 19.90, 18.00, 1, 1, )
+product.insert()
+
