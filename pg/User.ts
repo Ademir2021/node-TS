@@ -3,7 +3,6 @@ import { client } from "./Pg";
 import { users } from "./main"
 
 export class User extends Pg{
-
     private _username:string;
     private _password:string;
     constructor(id:number, name:string, username:string, password:string){
@@ -11,14 +10,6 @@ export class User extends Pg{
         this._username = username
         this._password = password
     };
-
-    // public get password():string{
-    //     return this._password
-    // };
-
-    // public set password(password:string){
-    //     this._password = password
-    // }
 
     public async insert() {
         try{
@@ -73,7 +64,7 @@ export class User extends Pg{
             console.table(resultado.rows)
          }
             catch(ex){
-            console.log("Ocorreu erro em user")
+            console.log("Ocorreu erro em users")
             }
             finally{
                 await client.end()
