@@ -17,9 +17,9 @@ export class Person extends Pg{
         console.log("iniciando a conexão !")
         await client.connect()
         console.log("Conexão bem sucedida !")
-        await client.query('insert into persons("name_pers", "cpf_pers", "address_pers", "fk_name_filial", "fk_sector") values ('+"'"+this._name+"', '"+this._cpf+"', '"+this._address+"', '"+this._name_filial+"');")
+        await client.query('insert into persons("name_pers","cpf_pers","address_pers","fk_name_filial") values ('+"'"+this._name+"', '"+this._cpf+"', '"+this._address+"', '"+this._name_filial+"');")
         console.log("Pessoa inserida na tabela !")
-        const resultado = await client.query("select * from products")
+        const resultado = await client.query("select * from persons")
         console.table(resultado.rows) 
     }
    catch(ex){
