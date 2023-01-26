@@ -29,7 +29,7 @@ export class User extends Pg{
     }      
     };
 
-    public async insertAll(users:any) {
+    public async insertAll(users: any) {
         try{
             console.log("iniciando a conexão !!")
             await client.connect()
@@ -50,6 +50,10 @@ export class User extends Pg{
             await client.end()
             console.log("Cliente desconectado !")
         }
+    };
+
+    public async insertItens() {
+        
     };
     
     public async update() {

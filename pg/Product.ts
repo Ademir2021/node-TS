@@ -37,7 +37,7 @@ export class Product extends Pg{
         product
     };
 
-    public insertItens(itensales: any) {
+    public insertItens() {
         
     }
 

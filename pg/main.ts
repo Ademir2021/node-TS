@@ -23,17 +23,21 @@ users = [
 //  let x = {id:6, name:'Ana Claudia de Amorin', username:'ana@provider.com', password:'123abc'}
 //  users.push(x)    
 
-//const user:Pg = new User(users[0].id, users[0].name, users[0].username, users[0].password)
+const user:Pg = new User(users[0].id, users[0].name, users[0].username, users[0].password)
 
-//const product:Pg = new Product(3, "Caixa Som Mult", 49.90, 39.00, 1, 1)
+const product:Pg = new Product(3, "Caixa Som Mult", 49.90, 39.00, 1, 1)
 
-//const person:Pg = new Person(1, "Ademir Souza de Almeida", "99999999972","Rua Paraiba", 1)
+const person:Pg = new Person(1, "Ademir Souza de Almeida", "99999999972","Rua Paraiba", 1)
 
-// let itensales = [{name:1, amount:2, val:19.90},
-//                  {name:2, amount:2, val:29.90},
-//                  {name:3, amount:2, val:49.90}]
+let itensales = [{id:1, name:1, amount:2, val_product:19.90, disc_sale:2.5},
+                 {id:2, name:2, amount:2, val_product:29.90, disc_sale:2.5},
+                 {id:3, name:3, amount:2, val_product:49.90, disc_sale:2.5}]
 
-const sale:Pg = new Sale(3, 1, 1, 300, 20)
 
-//sale.insertItens(itensales)
-console.log(sale)
+var sale:Pg = new Sale(itensales[0].id, itensales[0].name, itensales[0].amount, itensales[0].val_product, itensales[0].disc_sale)
+
+
+
+
+sale.insertItens(itensales)
+

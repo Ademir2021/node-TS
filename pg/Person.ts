@@ -31,11 +31,11 @@ export class Person extends Pg{
     }
     };
 
-    public insertAll(product:any): any {
-        product
+    public insertAll(person:any): any {
+        person
     };
 
-    public insertItens(itensales: any) {
+    public insertItens() {
         
     }
 
