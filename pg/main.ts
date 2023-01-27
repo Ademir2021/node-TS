@@ -31,19 +31,20 @@ users = [{id:1, name:'Ademir Souza de Almeida', username:'ademir@provider.com', 
 
 const user:Pg = new User(users[0].id, users[0].name, users[0].username, users[0].password);
 
-const product:Pg = new Product(3, "Caixa Som Mult", 49.90, 39.00, 1, 1);
+const product:Pg = new Product(3, "Rec Midia Box B5", 580.00, 550.00, 1, 1);
 
 const person:Pg = new Person(3, "Augusto Muller de Almeida", "99999999974","Rua Joao Sherer", 1);
 
-itensales = [{id_product:1, amount:2, val_product:19.90},
-                 {id_product:2, amount:2, val_product:25.90},
-                 {id_product:3, amount:2, val_product:39.90}];
+itensales = [{id_product:4, amount:3, val_product:500},
+                 {id_product:4, amount:1, val_product:580},
+                 {id_product:4, amount:1, val_product:550}];
 
-sales = {id:1, name:1, disc_sale:2.30}; 
+sales = {id:0, name:1, disc_sale:20}; 
 
 const sale:Pg = new Sale(sales.id, sales.name, sales.disc_sale);
 
-console.log('\n', sale, '\n')
-console.log(itensales, '\n')
-//sale.insertItens(itensales)
+// console.log('\n', sale, '\n')
+// console.log(itensales, '\n')
+sale.insertItens(itensales)
+//product.insert()
 

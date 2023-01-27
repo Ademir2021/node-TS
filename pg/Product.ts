@@ -19,7 +19,7 @@ export class Product extends Pg{
         console.log("iniciando a conexão !")
         await client.connect()
         console.log("Conexão bem sucedida !")
-        await client.query('insert into products("descric_product", "val_product", "val_min_product", "fk_brand", "fk_sector") values ('+"'"+this._name+"', '"+this._price+"', '"+this._price_min+"', '"+this._brand+"', '"+this._sector+"');")
+        await client.query('insert into products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector") values ('+"'"+this._name+"', '"+this._price+"', '"+this._price_min+"', '"+this._brand+"', '"+this._sector+"');")
         console.log("Produto inserido na tabela !")
         const resultado = await client.query("select * from products")
         console.table(resultado.rows) 
