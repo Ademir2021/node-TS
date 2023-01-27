@@ -3,7 +3,7 @@ const user_db = require('./.env.json');
 export const client = new Client(user_db);
 
  export abstract class Pg{
-    protected _id:number;
+    protected _id:number = 0;
     protected _name:string | number;
     constructor(id:number, name:string | number){
         this._id = id;
