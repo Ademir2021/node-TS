@@ -43,8 +43,7 @@ sales = {id:1, name:1, disc_sale:2.30};
 
 const sale:Pg = new Sale(sales.id, sales.name, sales.disc_sale);
 
-//console.log(sale)
-//console.log(itensales)
-
-sale.insertItens(itensales)
+console.log('\n', sale, '\n')
+console.log(itensales, '\n')
+//sale.insertItens(itensales)
 
