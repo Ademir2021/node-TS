@@ -19,11 +19,10 @@ export class Sale extends Pg{
         console.log("Conexão bem sucedida !");
         console.log("consultado a última venda");
         const result_num_sale = await client.query("SELECT MAX(id_sale) FROM sales;");
-        let id:number = 0;
-        id = result_num_sale.rows[0].max;
-        let num_sale = id + 1;
+        let id:number = result_num_sale.rows[0].max;
+        let num_sale:number = id + 1;
         console.log(num_sale);
-        console.log("inserindo os itens vendidos !!")
+        console.log("inserindo itens vendidos !!")
         for (let i = 0; itensales.length > i; i++){
         let sum_total_item:number = 0
         sum_total_item = itensales[i].amount * itensales[i].val_product;
@@ -31,7 +30,7 @@ export class Sale extends Pg{
         }
         const result_itens = await client.query("SELECT * FROM itens_sale")
         let _result_itens = result_itens.rows
-        console.log("Produtos inserido na tabela !!")
+        console.log("Produtos inserids na tabela !!")
         console.table(_result_itens)
         console.log("Lançando a Venda")
         const result_total_itens = await client.query("SELECT SUM(total_product) AS total FROM itens_sale WHERE fk_sale = '"+num_sale+"'");
@@ -50,7 +49,6 @@ export class Sale extends Pg{
         await client.end();
         console.log("Cliente desconectado !!");
         }
-
     };
 
     public update(): void {};
