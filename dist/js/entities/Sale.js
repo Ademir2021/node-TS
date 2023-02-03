@@ -9,13 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Sale = void 0;
-const Pg_1 = require("./Pg");
-const Pg_2 = require("./Pg");
-class Sale extends Pg_1.Pg {
+exports.Sale = exports.client = void 0;
+const Client = require('pg').Client;
+const config = require('../../.env');
+exports.client = new Client(config.pg);
+class Sale {
     constructor(id, name, disc_sale) {
-        super(id, name);
         this._disc_sale = 0;
+        this._id = id;
+        this._name = name;
         this._disc_sale = disc_sale;
     }
     ;
@@ -29,10 +31,10 @@ class Sale extends Pg_1.Pg {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log("iniciando a conexão !");
-                yield Pg_2.client.connect();
+                yield exports.client.connect();
                 console.log("Conexão bem sucedida !");
                 console.log("consultado a última venda");
-                const result_num_sale = yield Pg_2.client.query("SELECT MAX(id_sale) FROM sales;");
+                const result_num_sale = yield exports.client.query("SELECT MAX(id_sale) FROM sales;");
                 let id = result_num_sale.rows[0].max;
                 let num_sale = id + 1;
                 console.log(num_sale);
@@ -40,19 +42,19 @@ class Sale extends Pg_1.Pg {
                 for (let i = 0; itensales.length > i; i++) {
                     let sum_total_item = 0;
                     sum_total_item = itensales[i].amount * itensales[i].val_product;
-                    yield Pg_2.client.query('INSERT INTO itens_sale("fk_sale", "fk_product", "amount_product", "val_product", "total_product") VALUES (' + "'" + num_sale + "', '" + itensales[i].id_product + "', '" + itensales[i].amount + "', '" + itensales[i].val_product + "','" + sum_total_item + "');");
+                    yield exports.client.query('INSERT INTO itens_sale("fk_sale", "fk_product", "amount_product", "val_product", "total_product") VALUES (' + "'" + num_sale + "', '" + itensales[i].id_product + "', '" + itensales[i].amount + "', '" + itensales[i].val_product + "','" + sum_total_item + "');");
                 }
-                const result_itens = yield Pg_2.client.query("SELECT * FROM itens_sale");
+                const result_itens = yield exports.client.query("SELECT * FROM itens_sale");
                 let _result_itens = result_itens.rows;
                 console.log("Produtos inserids na tabela !!");
                 console.table(_result_itens);
                 console.log("Lançando a Venda");
-                const result_total_itens = yield Pg_2.client.query("SELECT SUM(total_product) AS total FROM itens_sale WHERE fk_sale = '" + num_sale + "'");
+                const result_total_itens = yield exports.client.query("SELECT SUM(total_product) AS total FROM itens_sale WHERE fk_sale = '" + num_sale + "'");
                 let sub_total_sale = 0;
                 sub_total_sale = result_total_itens.rows[0].total;
                 let total_sale = sub_total_sale - this._disc_sale;
-                yield Pg_2.client.query('INSERT INTO sales("fk_name_pers", "val_rec", "disc_sale", "total_sale") VALUES (' + "'" + this._name + "', '" + sub_total_sale + "', '" + this._disc_sale + "', '" + total_sale + "');");
-                const result_sale = yield Pg_2.client.query("SELECT *FROM sales");
+                yield exports.client.query('INSERT INTO sales("fk_name_pers", "val_rec", "disc_sale", "total_sale") VALUES (' + "'" + this._name + "', '" + sub_total_sale + "', '" + this._disc_sale + "', '" + total_sale + "');");
+                const result_sale = yield exports.client.query("SELECT *FROM sales");
                 console.table(result_sale.rows);
                 console.log("Venda efetuada com sucesso !!");
             }
@@ -60,7 +62,7 @@ class Sale extends Pg_1.Pg {
                 console.log("Ocorreu um erro !! Erro: " + ex);
             }
             finally {
-                yield Pg_2.client.end();
+                yield exports.client.end();
                 console.log("Cliente desconectado !!");
             }
         });

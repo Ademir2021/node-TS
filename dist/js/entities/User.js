@@ -9,12 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
-const Pg_1 = require("./Pg");
-const Pg_2 = require("./Pg");
-class User extends Pg_1.Pg {
+exports.User = exports.client = void 0;
+const Client = require('pg').Client;
+const config = require('../../.env');
+exports.client = new Client(config.pg);
+class User {
     constructor(id, name, username, password) {
-        super(id, name);
+        this._id = id;
+        this._name = name;
         this._username = username;
         this._password = password;
     }
@@ -23,18 +25,18 @@ class User extends Pg_1.Pg {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log("iniciando a conexão !");
-                //await client.connect()
+                yield exports.client.connect();
                 console.log("Conexão bem sucedida !");
-                yield Pg_2.client.query('insert into users("name", "username", "password") values (' + "'" + this._name + "', '" + this._username + "', '" + this._password + "');");
+                yield exports.client.query('insert into users("name", "username", "password") values (' + "'" + this._name + "', '" + this._username + "', '" + this._password + "');");
                 console.log("User inserido na tabela!");
-                const resultado = yield Pg_2.client.query("select * from users");
+                const resultado = yield exports.client.query("select * from users");
                 console.table(resultado.rows);
             }
             catch (ex) {
                 console.log("Ocorreu um erro no setUsers. Erro: " + ex);
             }
             finally {
-                //client.end()
+                exports.client.end();
             }
         });
     }
@@ -43,14 +45,14 @@ class User extends Pg_1.Pg {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 res.json("iniciando a conexão !!");
-                yield Pg_2.client.connect();
+                yield exports.client.connect();
                 res.json("Conexão bem sucedida !");
                 for (let i = 0; users.length > i; i++) {
-                    yield Pg_2.client.query('insert into users("name", "username", "password") values (' + "'" + users[i].name + "', '" + users[i].username + "', '" + users[i].password + "');");
+                    yield exports.client.query('insert into users("name", "username", "password") values (' + "'" + users[i].name + "', '" + users[i].username + "', '" + users[i].password + "');");
                 }
                 res.json("Users inseridos na tabela com sucesso!");
-                const resultado = yield Pg_2.client.query("select * from users");
-                //console.table(resultado.rows)
+                const resultado = yield exports.client.query("select * from users");
+                console.table(resultado.rows);
                 let result = resultado.rows;
                 res.json(result);
             }
@@ -58,7 +60,7 @@ class User extends Pg_1.Pg {
                 res.json("Ocorreu um erro no setUsers. Erro: " + ex);
             }
             finally {
-                yield Pg_2.client.end();
+                yield exports.client.end();
                 res.json("Cliente desconectado !");
             }
         });
@@ -73,18 +75,18 @@ class User extends Pg_1.Pg {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log("Iniciando a conexão !");
-                yield Pg_2.client.connect();
+                yield exports.client.connect();
                 console.log('Bem sucedida !');
-                yield Pg_2.client.query("UPDATE users SET name = '" + this._name + "', username = '" + this._username + "', password = '" + this._password + "' WHERE id = '" + this._id + "';");
+                yield exports.client.query("UPDATE users SET name = '" + this._name + "', username = '" + this._username + "', password = '" + this._password + "' WHERE id = '" + this._id + "';");
                 console.log("user alterado da tabela");
-                const resultado = yield Pg_2.client.query("SELECT * FROM users");
+                const resultado = yield exports.client.query("SELECT * FROM users");
                 console.table(resultado.rows);
             }
             catch (ex) {
                 console.log("Ocorreu erro !!");
             }
             finally {
-                yield Pg_2.client.end();
+                yield exports.client.end();
                 console.log("Cliente desconectado !!");
             }
         });
@@ -94,9 +96,9 @@ class User extends Pg_1.Pg {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log("Iniciando a conexão !");
-                yield Pg_2.client.connect();
+                yield exports.client.connect();
                 console.log('Bem sucedida! ');
-                const resultado = yield Pg_2.client.query("SELECT * from users ");
+                const resultado = yield exports.client.query("SELECT * from users ");
                 let user = resultado.rows;
                 console.table(user);
             }
@@ -104,7 +106,7 @@ class User extends Pg_1.Pg {
                 console.log("Ocorreu erro !");
             }
             finally {
-                yield Pg_2.client.end();
+                yield exports.client.end();
                 console.log("Cliente desconectado !");
             }
         });
@@ -113,12 +115,12 @@ class User extends Pg_1.Pg {
     find() {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("iniciando uma conexão !");
-            Pg_2.client.connect();
+            exports.client.connect();
             console.log("Conexão bem sucedida !");
-            const resultado = yield Pg_2.client.query("SELECT *FROM users WHERE id =  '" + this._id + "';");
+            const resultado = yield exports.client.query("SELECT *FROM users WHERE id =  '" + this._id + "';");
             let user = resultado.rows;
             console.log(user);
-            Pg_2.client.end();
+            exports.client.end();
             console.log("Cliente desconectado !");
         });
     }
@@ -127,18 +129,18 @@ class User extends Pg_1.Pg {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log("Iniciando a conexão !");
-                yield Pg_2.client.connect();
+                yield exports.client.connect();
                 console.log('Bem sucedida!');
-                yield Pg_2.client.query("DELETE FROM users WHERE name = '" + this._name + "';");
+                yield exports.client.query("DELETE FROM users WHERE name = '" + this._name + "';");
                 console.log("user removido da tabela");
-                const resultado = yield Pg_2.client.query("SELECT * FROM users !");
+                const resultado = yield exports.client.query("SELECT * FROM users !");
                 console.table(resultado.rows);
             }
             catch (ex) {
                 console.log("Ocorreu erro em user !");
             }
             finally {
-                yield Pg_2.client.end();
+                yield exports.client.end();
                 console.log("Cliente desconectado !!");
             }
         });

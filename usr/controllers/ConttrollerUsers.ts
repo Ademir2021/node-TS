@@ -20,7 +20,8 @@ export class ConttrollersUSers{
         console.log("starting the search !!")
         const resultado = await client.query("SELECT * FROM users WHERE id > '"+id+"'")
         let users = resultado.rows
-        response.json({users});
+        let x = JSON.stringify(users)
+        response.json(x);
         console.log("successful search !!")
         console.log(users)
     }catch(ex){

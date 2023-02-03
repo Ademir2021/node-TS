@@ -9,12 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Person = void 0;
-const Pg_1 = require("./Pg");
-const Pg_2 = require("./Pg");
-class Person extends Pg_1.Pg {
+exports.Person = exports.client = void 0;
+const Client = require('pg').Client;
+const config = require('../../.env');
+exports.client = new Client(config.pg);
+class Person {
     constructor(id, name, cpf, address, name_filial) {
-        super(id, name);
+        this._id = id;
+        this._name = name;
         this._cpf = cpf;
         this._address = address;
         this._name_filial = name_filial;
@@ -24,18 +26,18 @@ class Person extends Pg_1.Pg {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 console.log("iniciando a conexão !");
-                yield Pg_2.client.connect();
+                yield exports.client.connect();
                 console.log("Conexão bem sucedida !");
-                yield Pg_2.client.query('insert into persons("name_pers","cpf_pers","address_pers","fk_name_filial") values (' + "'" + this._name + "', '" + this._cpf + "', '" + this._address + "', '" + this._name_filial + "');");
+                yield exports.client.query('insert into persons("name_pers","cpf_pers","address_pers","fk_name_filial") values (' + "'" + this._name + "', '" + this._cpf + "', '" + this._address + "', '" + this._name_filial + "');");
                 console.log("Pessoa inserida na tabela !");
-                const resultado = yield Pg_2.client.query("select * from persons");
+                const resultado = yield exports.client.query("select * from persons");
                 console.table(resultado.rows);
             }
             catch (ex) {
                 console.log("Ocorreu um erro !! Erro: " + ex);
             }
             finally {
-                yield Pg_2.client.end();
+                yield exports.client.end();
                 console.log("Cliente desconectado !!");
             }
         });
