@@ -8,6 +8,7 @@ let user = {
 }
 
 addNewUser()
+getUser()
 
  function addNewUser(){
      axios.post(url, user)
@@ -24,4 +25,4 @@ function getUser(){
         console.log(data)
     })
     .catch(error =>console.log(error))
-};getUser()
+};

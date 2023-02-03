@@ -1,24 +1,12 @@
-const Client = require('pg').Client;
-import { User } from '../provider/pg/User'
 import { json, response, Router} from "express"
-
-let id:number = 0
-let users = [{ id: 0, name: "teste", username: "", password: "" }]
+import { ConttrolersUSers } from "../controllers/ConttrolerUsers";
 
 const RUser = Router();
 
-RUser.route('/users').get((req, res) => res.json({
-    users
-}));
+const conttrolersUSers = new ConttrolersUSers()
 
-RUser.route('/users').post((req, res) => {
-    let user:any = []
-    const { name ,username, password } = req.body
-    user.push({name, username, password})
-    const _user = new User(1, user[0].name, user[0].username, user[0].password);
-    _user.insert()
-   console.log(user)
-    res.json("User Register Sussefull !!")
-});
+RUser.get('/', conttrolersUSers.index)
+RUser.get('/users', conttrolersUSers.select)
+RUser.post('/users', conttrolersUSers.insert)
 
-export { RUser }
+ export { RUser }

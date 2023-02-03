@@ -1,5 +1,5 @@
-import { Pg } from "../provider/pg/Pg";
-import { Sale } from '../provider/pg/Sale';
+import { Pg } from "../entities/Pg";
+import { Sale } from '..//entities/Sale';
 import { IItensSale } from "../dto/ISale";
 
 let itensales:IItensSale[] = []

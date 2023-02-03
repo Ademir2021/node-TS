@@ -1,6 +1,5 @@
 const Client = require('pg').Client;
-//const user_db = require('./.env.json');
-const config  = require ('../pg/.env')
+const config  = require ('../../.env')
 export const client = new Client(config.db);
 
  export abstract class Pg{

@@ -23,7 +23,6 @@ function getUser(){
     .catch(error =>console.log(error))
 }
 
-
 function addNewUser(){
     axios.post(url, user)
     .then(response =>{

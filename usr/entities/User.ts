@@ -1,6 +1,5 @@
 import { Pg } from "./Pg";
 import { client } from "./Pg";
-import { json } from 'express';
 
 export class User extends Pg{
     private _username:string;
@@ -79,7 +78,7 @@ export class User extends Pg{
     public async findAll(){
         try{
             console.log("Iniciando a conexão !")
-            await client.connect()
+           await client.connect()
             console.log('Bem sucedida! ')
             const resultado = await client.query("SELECT * from users ")
             let user = resultado.rows
@@ -91,7 +90,7 @@ export class User extends Pg{
             finally{
                 await client.end()
                 console.log("Cliente desconectado !")
-            }
+             }
         };
 
         public async find(){
