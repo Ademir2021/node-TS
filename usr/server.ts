@@ -1,15 +1,11 @@
-import { RUser } from './routes/RUsers';
+import { routerUser } from './routes/RouterUsers';
 import express, { NextFunction, Request, Response } from 'express';
-const Client = require('pg').Client;
-const config  = require ('../.env')
-export const client = new Client(config.db);
 
 const cors = require('cors')
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(RUser);
-client.connect();
+app.use(routerUser);
 
 app.use(
     (error: Error, request: Request, response: Response, next: NextFunction) => { 

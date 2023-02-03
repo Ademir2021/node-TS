@@ -1,12 +1,16 @@
-import { Pg } from './Pg'
-import { client } from "./Pg";
+const Client = require('pg').Client;
+const config  = require ('../../.env')
+export const client = new Client(config.pg);
 
-export class Person extends Pg{
+export class Person{
+    private _id:number;
+    private _name:string;
     private _cpf:string;
     private _address:string;
     private _name_filial:number;
     constructor(id:number, name:string, cpf:string, address:string, name_filial:number){
-        super(id, name)
+        this._id = id;
+        this._name = name;
         this._cpf = cpf;
         this._address = address;
         this._name_filial = name_filial

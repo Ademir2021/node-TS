@@ -1,6 +1,6 @@
 const Client = require('pg').Client;
 const config  = require ('../../.env')
-export const client = new Client(config.db);
+export const client = new Client(config.pg);
 
  export abstract class Pg{
     protected _id:number = 0;

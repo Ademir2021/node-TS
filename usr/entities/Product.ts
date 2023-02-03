@@ -1,13 +1,17 @@
-import { Pg } from './Pg'
-import { client } from "./Pg";
+const Client = require('pg').Client;
+const config  = require ('../../.env')
+export const client = new Client(config.pg);
 
-export class Product extends Pg{
+export class Product{
+    private _id:number;
+    private _name:string;
     private _price:number;
     private _price_min:number;
     private _brand:number;
     private _sector:number;
     constructor( id:number, name:string, price:number, price_min:number, brand:number, sector:number){
-        super( id, name)
+        this._id = id;
+        this._name = name;
         this._price = price;
         this._price_min = price_min;
         this._brand = brand;

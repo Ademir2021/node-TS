@@ -2,8 +2,8 @@ import axios from 'axios'
 const url = "http://localhost:3000/users";
 
 let user = {
-    name:"Ademirs Souza de Almeida",
-    username:"centroserra@gmail.com",
+    name:"Maria Cecilia do Amarau",
+    username:"cecilia@proider.com",
     password:"123abc"
 }
 

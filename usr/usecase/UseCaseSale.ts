@@ -1,6 +1,5 @@
-import { Pg } from "../entities/Pg";
 import { Sale } from '..//entities/Sale';
-import { IItensSale } from "../dto/ISale";
+import { IItensSale } from "../interfaces/ISale";
 
 let itensales:IItensSale[] = []
 
@@ -10,4 +9,4 @@ itensales = [{id_product:4, amount:3, val_product:500},
 
 let sales = {id:0, name:1, disc_sale:20}; 
 
-const sale:Pg = new Sale(sales.id, sales.name, sales.disc_sale);
+const sale:Sale = new Sale(sales.id, sales.name, sales.disc_sale);

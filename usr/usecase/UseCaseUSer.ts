@@ -1,6 +1,6 @@
 import axios from 'axios';
 const url = "http://localhost:3000/users";
-import { IUser } from '../dto/IUser' 
+import { IUser } from '../interfaces/IUser' 
 
 let user:IUser
  user = {name:"Ademir Souza de Almeida",username:"ademir_gre@hotmail.com",password:""}

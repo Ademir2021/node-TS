@@ -1,5 +1,5 @@
 const config =  {
-    db: {
+    pg: {
         user: "postgres",
         password: "123",
         host: "localhost",
