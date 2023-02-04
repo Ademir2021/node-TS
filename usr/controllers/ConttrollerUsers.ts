@@ -16,12 +16,12 @@ export class ConttrollersUSers{
 
     async select(request: Request, response: Response) {
     try{
-        let id = 100
+        let id = 0
         console.log("starting the search !!")
         const resultado = await client.query("SELECT * FROM users WHERE id > '"+id+"'")
-        let users = resultado.rows
-        let x = JSON.stringify(users)
-        response.json(x);
+        const result = resultado.rows
+        const users = result
+        response.json(users);
         console.log("successful search !!")
         console.log(users)
     }catch(ex){
@@ -35,8 +35,8 @@ export class ConttrollersUSers{
         user.push({name, username, password})
         await client.query('INSERT INTO users("name", "username", "password") VALUES ('+"'"+user[0].name+"', '"+user[0].username+"', '"+user[0].password+"');")
         console.log("User(s) inserted in the Table !!")
-        const resultado = await client.query("SELECT name FROM users WHERE name = '"+user[0].name+"' LIMIT(1)")
-        console.log('This is new Person: ', resultado.rows)
+        const result = await client.query("SELECT name FROM users WHERE name = '"+user[0].name+"' LIMIT(1)")
+        console.log('This is new Person: ', result.rows)
         response.json("User Register Success !!")
     }catch(ex){
         console.log("Error Occurred !!")}
