@@ -37,9 +37,28 @@ export class Product{
     }
     };
 
-    public insertAll(product:any): any {
-        product
-    };
+    public async insertAll(products: any, res:any) {
+        try{
+        console.log("iniciando a conexão !!")
+        await client.connect()
+        console.log("Conexão bem sucedida !")
+        for (let i = 0; products.length > i; i++){
+        await client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code" ) VALUES ('+"'"+products[i].name+"', '"+products[i].price_max+"', '"+products[i].price_min+"', '"+products[i].brand+"', '"+products[i].sector+"', '"+products[i].bar_code+"');")
+        }
+        console.log("products inseridos na tabela com sucesso!")
+        const resultado = await client.query("select * from products")
+        console.table(resultado.rows)
+        let result = resultado.rows
+        console.log(result)
+        }
+        catch(ex){
+            console.log("Ocorreu um erro no insertAll. Erro: "+ ex)
+        }
+        finally{
+            await client.end()
+            console.log("Cliente desconectado !")
+        }
+    };;
 
     public insertItens() {
         

@@ -3,11 +3,11 @@ const url = "http://localhost:3000/users";
 
 let user = {
     name:"Maria Cecilia do Amarau",
-    username:"cecilia@proider.com",
+    username:"cecilia@provider.com",
     password:"123abc"
 }
 
-addNewUser()
+//addNewUser()
 getUser()
 
  function addNewUser(){

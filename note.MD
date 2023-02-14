@@ -1,12 +1,12 @@
 ## API Rest form server Sales
 
 # DIRS
-- controlles []
-- dto []
+- controlles [x]
+- interfaces [x]
 - entities []
-- routes []
+- routes [x]
 - usecase [] `class test`
 
 # FILES
-- server []
-- .env.js []
+- server [x]
+- .env.js [x]
