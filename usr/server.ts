@@ -1,4 +1,5 @@
-import { routerUser, routerProduct } from './routes/RouterUsers';
+import { routerUser } from './routes/RouterUsers';
+import { routerProduct } from './routes/RouterProducts';
 import express, { NextFunction, Request, Response } from 'express';
 
 const cors = require('cors')

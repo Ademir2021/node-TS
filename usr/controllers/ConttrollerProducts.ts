@@ -30,14 +30,14 @@ export class ConttrollersProducts{
 
     async insert(request: Request, response: Response){
     try{
-        const user:any = []
-        const { name ,username, password } = request.body
-        user.push({name, username, password})
-        await client.query('INSERT INTO users("name", "username", "password") VALUES ('+"'"+user[0].name+"', '"+user[0].username+"', '"+user[0].password+"');")
-        console.log("User(s) inserted in the Table !!")
-        const result = await client.query("SELECT name FROM users WHERE name = '"+user[0].name+"' LIMIT(1)")
-        console.log('This is new Person: ', result.rows)
-        response.json("User Register Success !!")
+        const product:any = []
+        const {name, val_max, val_min, brand, sector, bar_code} = request.body
+        product.push({name, val_max, val_min, brand, sector, bar_code})
+        await client.query('INSERT INTO products("descric_product", "val_max_product", "val_min_product", "fk_brand", "fk_sector", "bar_code") VALUES ('+"'"+product[0].name+"', '"+product[0].val_max+"', '"+product[0].val_min+"', '"+product[0].brand+"', '"+product[0].sector+"', '"+product[0].bar_code+"');")
+        console.log("Product(s) inserted in the Table !!")
+        const result = await client.query("SELECT descric_product FROM products WHERE descric_product = '"+product[0].name+"' LIMIT(1)")
+        console.log('This is new Product: ', result.rows)
+        response.json("Product Register Success !!")
     }catch(ex){
         console.log("Error Occurred !!")}
     };
