@@ -6,6 +6,6 @@ const conttrollersSales = new ConttrollersSales()
 
 routerSale.get('/', conttrollersSales.index)
 routerSale.get('/sales', conttrollersSales.select)
-//routerProduct.post('/products', conttrollersSales.insert)
+routerSale.post('/sales', conttrollersSales.insert)
 
 export { routerSale }
