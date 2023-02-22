@@ -5,6 +5,7 @@ import { routerSale } from './routes/RouterSales';
 
 const cors = require('cors')
 const app = express();
+const PORT = 3000 || 3005
 app.use(cors());
 app.use(express.json());
 app.use(routerUser);
@@ -19,7 +20,7 @@ app.use(
         })
     })
 
-app.listen(3000, () => console.log("server is runing on port 3000"));
+app.listen(PORT, () => console.log("server is runing on", {PORT}));
 
 
     

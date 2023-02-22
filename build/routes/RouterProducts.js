@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.routerProduct = void 0;
+const express_1 = require("express");
+const ConttrollerProducts_1 = require("../controllers/ConttrollerProducts");
+const routerProduct = (0, express_1.Router)();
+exports.routerProduct = routerProduct;
+const conttrollersProducts = new ConttrollerProducts_1.ConttrollersProducts();
+routerProduct.get('/', conttrollersProducts.index);
+routerProduct.get('/products', conttrollersProducts.select);
+routerProduct.post('/products', conttrollersProducts.insert);

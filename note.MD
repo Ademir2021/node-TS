@@ -10,3 +10,8 @@
 # FILES
 - server [x]
 - .env.js [x]
+
+# Typescript
+- tsc -- init `inicia um projeto typeScript`
+- tsc `gera uma nova build`
+- tsc -w `gera byild autom`
